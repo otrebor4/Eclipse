@@ -6,13 +6,16 @@ Created on Jan 28, 2014
 import game.base.Component as Component
 import pygame
 import game.util.Vector2 as Vector2
+
 class ClickToMove(Component.Component):
     def __init__(self,gameObject):
         Component.Component.__init__(self, gameObject)
         self.targe = None
         self.shape = gameObject.shape
         self.speed = 100
-        
+    
+    
+    
     def update(self,delta):
         if self.shape == None:
             return

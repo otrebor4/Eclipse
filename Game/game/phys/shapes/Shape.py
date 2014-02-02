@@ -4,6 +4,8 @@ Created on Jan 28, 2014
 @author: otrebor
 '''
 import game.util.Vector2 as Vector2
+import math
+
 class Shape:
     def __init__(self, x,y):
         self.position = Vector2.Vector2(x,y)
@@ -39,3 +41,10 @@ class Shape:
         x = self.Left()+self.Width()/2
         y = self.Top()+self.Height()/2
         return Vector2.Vector2(x,y)
+    
+    
+    def Radius(self):
+        w = self.Width()
+        h = self.Height()
+        
+        return math.sqrt(w*w+h*h)

@@ -15,6 +15,8 @@ class GameObject:
         self.components = []
         self.riged = None
         
+        self.main = world.main
+        
     def setPos(self, pos):
         if self.collider != None:
             self.collider.setPos(pos)
@@ -32,8 +34,19 @@ class GameObject:
             if inspect.isclass(component):
                 component = component(arg)
             self.components.append(component)
+        return component
     
-    
+    def getComponent(self, name):
+        for comp in self.components:
+            if comp.__class__.__name__ == name:
+                return comp
+    def getComponents(self, name):
+        comps = []
+        for comp in self.components:
+            if comp.__class__.__name__ == name:
+                comps.append(comp)
+        return comps
+        
     def update(self, delta):
         if self.components == None:
             return

@@ -18,7 +18,7 @@ class Riged(Component.Component):
     #apply movement to object
     def update(self,delta):
         if self.gameObject.collider.static:
-            self.speed = Vector2.Vector2()  #static object can't be moved by given speed must manually change position
+            self.velocity = Vector2.Vector2()  #static object can't be moved by given speed must manually change position
         self.gameObject.shape.position = self.gameObject.shape.position.add( self.velocity.scale(delta))
         
         if self.applyGravity:

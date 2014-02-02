@@ -9,6 +9,7 @@ class PhysEng:
     
     def __init__(self):
         self.objects = []
+        self.toRemove = []
         
     def objCount(self):
         return len(self.objects)
@@ -18,7 +19,7 @@ class PhysEng:
         self.objects.append(obj)
     
     def remove(self, obj):
-        self.objects.remove(obj)
+        self.toRemove.append(obj)
         
     def update(self, delta):
         size = self.objCount()
@@ -26,7 +27,13 @@ class PhysEng:
             for j in range(i, size):
                 if i != j:  # is not the same
                     self.handleCollision(self.objects[i], self.objects[j])
-                    
+        self.updateList()
+    
+    def updateList(self):
+        for obj in self.toRemove:
+            self.objects.remove(obj)
+        self.toRemove = []
+    
     def handleCollision(self, obj1, obj2):
         dis = 2
         info = physutil.testCollision(obj1, obj2)

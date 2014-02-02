@@ -11,12 +11,12 @@ import util.Vector2 as Vector2
 
 
 class World:
-    
-    def __init__(self,gravity=Vector2.Vector2()):
+    def __init__(self,main,gravity=Vector2.Vector2()):
         self.phyEng = PhysEng.PhysEng()
         self.objects = []
+        self.toRemove = []
         self.gravity = gravity
-        
+        self.main = main
     def createWall(self, x, y, w, h, color=(0, 0, 0)):
         wall = RectObject.RectObject(self,x, y, w, h, color)
         self.phyEng.add(wall.collider)
@@ -41,11 +41,9 @@ class World:
         self.objects.append(r)
         return r
     
-    # not working
-    def addSprite(self, img, x, y, w, h):
-        
-        sprite = sprite.Sprite(img, x, y, w, h)    
-        # self.phyEng.add( sprite )
+    def Delete(self,gameObject):
+        self.phyEng.remove(gameObject.collider)
+        self.toRemove.append(gameObject)
         
     def update(self, delta):
         # update game logic
@@ -53,7 +51,13 @@ class World:
             obj.update(delta)
         # update physics
         self.phyEng.update(delta)
+        self.updateRemove()
     
+    def updateRemove(self):
+        for obj in self.toRemove:
+            self.objects.remove(obj)
+        self.toRemove = []
+        
     def draw(self, screen):
         # call draw
         for obj in self.objects:
