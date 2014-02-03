@@ -35,7 +35,7 @@ class PhysEng:
         self.toRemove = []
     
     def handleCollision(self, obj1, obj2):
-        dis = 2
+        dis = 0
         info = physutil.testCollision(obj1, obj2)
         if info != None: 
             if not obj1.static or not obj2.static:
@@ -45,7 +45,7 @@ class PhysEng:
                 elif obj2.static:
                     move = info.direction.scale(info.distance+dis)
                     info.shape1.position = info.shape1.position.add(move)
-                else:  
+                else:
                     move = info.direction.scale((info.distance+dis)/2)
                     info.shape1.position = info.shape1.position.add(move)
                     info.shape2.position = info.shape2.position.add(move.scale(-1))

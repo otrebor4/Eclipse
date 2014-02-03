@@ -32,7 +32,7 @@ class Game:
     def __init__ (self):
         self.INIT = True
         pygame.init()
-        self.screen = pygame.display.set_mode((500, 500))
+        self.screen = pygame.display.set_mode((1024, 768))
         pygame.display.set_caption(self.GAMENAME)
         self.keyboard = KeyBoard()
         
@@ -40,7 +40,7 @@ class Game:
             self.world = world.World(self, Vector2.Vector2(0,0))
          
     def draw(self, delta):
-        self.screen.fill((255, 255, 0))
+        #self.screen.fill((255, 255, 0))
         self.world.draw(self.screen)
         pygame.display.flip()
         return

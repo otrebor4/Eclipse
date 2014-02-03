@@ -10,7 +10,7 @@ import random
 
 from scripts import ClickToMove
 import game.Game as Game
-
+import generate_map
 from scripts import Shoter
 
 
@@ -28,12 +28,20 @@ class Test(Game.Game):
         #r.addComponent(ClickToMove.ClickToMove(r) )
         r.addComponent(Shoter.Shotter(r))
         #r.addComponent(ClickToMove.TestMessage(r))
-        self.world.createWall(1, 500, 500, 100, (0,0,0)) #bottom
+        self.world.createWall(1, 768, 1024, 100, (0,0,0)) #bottom
         self.world.createWall(1, -100, 500, 100, (0,0,0))   #top
         self.world.createWall(-99, 0, 100, 500, (0,0,0))   #left
         self.world.createWall(500, 0, 100, 500, (0,0,0)) #right
         
-            
+        #back ground
+        self.b1 = generate_map.create_map("testmap_layer1.txt" , self.screen)
+        self.b2 = generate_map.create_map("testmap_layer2.txt" , self.screen)
+        
+    def draw(self, delta):
+        self.b1.draw_layer(self.screen)
+        self.b2.draw_layer(self.screen)
+        return Game.Game.draw(self, delta)
+    
 if __name__ == '__main__':
     g = Test()
     g.run()
