@@ -1,0 +1,15 @@
+g:grass.png
+s:stone1.png
+d:dirt1.png
+ggggggssssgggggg
+ggggggssssgggggg
+ggggggssssgggggg
+ggssssssssssssgg
+ggssssssssssssgg
+ggggggssssgggggg
+ggggggssssgggggg
+ggggggssssgggggg
+ggggggssssgggggg
+ggggggssssgggggg
+gdddddssssdddddg
+gdddddssssdddddg

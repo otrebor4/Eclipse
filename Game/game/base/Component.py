@@ -9,7 +9,8 @@ class Component:
         self.gameObject = gameObject
         self.main = gameObject.main
         
-    def update(self,delta):
+        
+    def update(self, delta):
         pass
     
     def Destroy(self):

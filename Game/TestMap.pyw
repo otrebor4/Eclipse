@@ -1,14 +1,17 @@
-import pygame
-import sys
-import math
 import fileinput
+import math
+import sys
+
+import pygame
+
 import generate_map
+
 
 pygame.init()
 
-#creates screen, displays caption, creates sprite
-screen = pygame.display.set_mode( (1024, 768) )
-pygame.display.set_caption( "Map_Maker" )
+# creates screen, displays caption, creates sprite
+screen = pygame.display.set_mode((1024, 768))
+pygame.display.set_caption("Map_Maker")
 l1 = generate_map.create_map("testmap_layer1.txt" , screen)
 l2 = generate_map.create_map("testmap_layer2.txt", screen)
 
@@ -18,12 +21,12 @@ while True:
    
     pygame.display.flip()
 
-    #process event handlers
+    # process event handlers
 
     pygame.event.pump()
     for evt in pygame.event.get():
         
-        #exits screen if escape or 'x' box is clicked
+        # exits screen if escape or 'x' box is clicked
         if evt.type == pygame.QUIT:
             pygame.quit()
             sys.exit()

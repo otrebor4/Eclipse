@@ -1,8 +1,9 @@
+c:cloud.png
 gggggggggggggggg
 gggggggggggggggg
-gggggggggggggggg
-gggggggggggggggg
-gggggggggggggggg
+ggcccccggggggggg
+ggcccccggggggggg
+ggcccccggggggggg
 gggggggggggggggg
 gggggggggggggggg
 gggggggggggggggg

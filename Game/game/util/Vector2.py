@@ -12,7 +12,7 @@ class Vector2:
         self.y = y
     
     def __str__(self):
-        return "(%0.2f, %0.2f)"%(self.x, self.y)
+        return "(%0.2f, %0.2f)" % (self.x, self.y)
     
     def __repr__(self):
         return self.__str__()
@@ -48,8 +48,8 @@ class Vector2:
     def dot(self, v2):
         return self.x * v2.x + self.y * v2.y
     
-    def cross(self,v2):
-        return Vector2(self.x*v2.y,self.y*v2.x)
+    def cross(self, v2):
+        return Vector2(self.x * v2.y, self.y * v2.x)
     
     
     

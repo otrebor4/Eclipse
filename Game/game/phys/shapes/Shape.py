@@ -3,20 +3,22 @@ Created on Jan 28, 2014
 
 @author: otrebor
 '''
-import game.util.Vector2 as Vector2
 import math
 
+import game.util.Vector2 as Vector2
+import pygame
+
 class Shape:
-    def __init__(self, x,y):
-        self.position = Vector2.Vector2(x,y)
-        self.aabb = (0,0,0,0)
+    def __init__(self, x, y):
+        self.position = Vector2.Vector2(x, y)
+        self.aabb = (0, 0, 0, 0)
     
     '''
     =========AABB useful variables
     '''
     
     def calAABB(self):
-        return (self.Left(),self.Top(),self.Right(),self.Bottom())
+        return (self.Left(), self.Top(), self.Right(), self.Bottom())
     
     def Left(self):
         return self.aabb[0] + self.position.x
@@ -32,19 +34,26 @@ class Shape:
     
     
     def Width(self):
-        return self.Right()-self.Left()
+        return self.Right() - self.Left()
     
     def Height(self):
         return self.Bottom() - self.Top()
     
     def Center(self):
-        x = self.Left()+self.Width()/2
-        y = self.Top()+self.Height()/2
-        return Vector2.Vector2(x,y)
+        x = self.Left() + self.Width() / 2
+        y = self.Top() + self.Height() / 2
+        return Vector2.Vector2(x, y)
     
     
     def Radius(self):
         w = self.Width()
         h = self.Height()
         
-        return math.sqrt(w*w+h*h)
+        return math.sqrt(w * w + h * h)
+    
+    def draw(self,screen):
+        s = pygame.Surface([self.Width(),self.Height()], pygame.SRCALPHA, 32)
+        s.fill((250,0,0,100))
+        
+        screen.blit(s, (self.Left(),self.Top()))
+        pass

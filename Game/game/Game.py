@@ -3,11 +3,14 @@ Created on Jan 30, 2014
 
 @author: otrebor
 '''
-import pygame
 import sys
-import world
-import util.Vector2 as Vector2
+
+import pygame
+
 import pygame.locals as locals
+import util.Vector2 as Vector2
+import world
+import Resources
 
 class KeyBoard:
     def __init__(self):
@@ -19,7 +22,7 @@ class KeyBoard:
         for evt in pygame.event.get(locals.KEYUP):
             self.keyState[evt.key] = False
         
-    def isKeyDown(self,key):
+    def isKeyDown(self, key):
         if not self.keyState.has_key(key):
             return False
         else:
@@ -27,21 +30,25 @@ class KeyBoard:
     
     
 class Game:
+    RESOLUTION = (1024,768)
     GAMENAME = "null"
     INIT = False        
     def __init__ (self):
         self.INIT = True
         pygame.init()
-        self.screen = pygame.display.set_mode((1024, 768))
+        self.resources = Resources.Resources() 
+        self.screen = pygame.display.set_mode(self.RESOLUTION)
         pygame.display.set_caption(self.GAMENAME)
         self.keyboard = KeyBoard()
         
         if not hasattr(self, 'world'):
-            self.world = world.World(self, Vector2.Vector2(0,0))
+            self.world = world.World(self, Vector2.Vector2(0, 0))
          
-    def draw(self, delta):
-        #self.screen.fill((255, 255, 0))
+    def draw(self,debug = False):
+        self.screen.fill((0, 0, 0,0))
         self.world.draw(self.screen)
+        if debug:
+            self.world.debDraw(self.screen)
         pygame.display.flip()
         return
     
@@ -69,6 +76,6 @@ class Game:
             newtime = pygame.time.get_ticks()
             delta = newtime - oldtime
             oldtime = newtime
-            deltaf = delta/1000.0
+            deltaf = delta / 1000.0
             self.update(deltaf)
-            self.draw(deltaf)
+            self.draw()

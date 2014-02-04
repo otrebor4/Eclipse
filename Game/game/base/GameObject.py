@@ -3,8 +3,9 @@ Created on Jan 27, 2014
 
 @author: otrebor
 '''
-import sys
 import inspect
+import sys
+
 
 class GameObject:
     def __init__(self, world):
@@ -14,32 +15,25 @@ class GameObject:
         self.render = None
         self.components = []
         self.riged = None
-        
-        self.main = world.main
-        
-    def setPos(self, pos):
-        if self.collider != None:
-            self.collider.setPos(pos)
+        if world:
+            self.main = world.main
             
-    def setVel(self, vel):
-        if self.collider != None:
-            self.collider.setVel(vel)
-    
-    def addVel(self, acc):
-        if self.collider != None:
-            self.collider.addVel(acc)
-    
-    def addComponent(self, component, arg = None):
+    def addComponent(self, component):
+        comp = None
         if component != None:
             if inspect.isclass(component):
-                component = component(arg)
-            self.components.append(component)
-        return component
+                comp = component(self)
+                self.components.append(comp)
+            else:
+                print "component %s is not a ClassType" % (component)
+                raise
+        return comp
     
     def getComponent(self, name):
         for comp in self.components:
             if comp.__class__.__name__ == name:
                 return comp
+    
     def getComponents(self, name):
         comps = []
         for comp in self.components:
@@ -58,13 +52,13 @@ class GameObject:
         if self.render != None:
             self.render.draw(screen)
 
-    #currently support only one argument, must create a wraper to pass multiple variables
+    # currently support only one argument, must create a wraper to pass multiple variables
     def sendMessage(self, fname, arg):   
         if self.components == None:
             return
         for comp in self.components:
             try:
-                getattr(comp,fname)(arg)
+                getattr(comp, fname)(arg)
             except AttributeError:
                 pass
             except:

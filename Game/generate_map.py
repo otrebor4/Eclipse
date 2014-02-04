@@ -1,9 +1,12 @@
-import pygame
-import sys
-import math
 import fileinput
+import math
 import os
+import sys
+
+import pygame
+
 import create_tiles
+
 
 class create_map:
     def __init__(self, map_file, screen):
@@ -26,7 +29,8 @@ class create_map:
                     x = x + 64               
                 y = y + 64
 
-    def draw_layer(self,screen):      
+    def draw_layer(self, screen):      
         for t in self.tiles:
             t.draw(screen)
-
+    
+    
