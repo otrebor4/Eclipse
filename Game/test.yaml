@@ -1,0 +1,9 @@
+&id001 !GameObject
+collider: null
+components:
+- !!python/object:scripts.Shoter.Controller
+  gameObject: *id001
+name: object
+renders: []
+riged: null
+shape: null

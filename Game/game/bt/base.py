@@ -13,40 +13,52 @@ class State:
 class Group:
     def __init__(self):
         self.actions = []
-        
-    def addAction(self, action):
-        self.list.append(action)
-        return self
     
-# base structure of a behavior continue executing until one return running or failed
-
+    def __call__(self,delta):
+        return self.update(delta)
+            
+    def update(self,delta):
+        return State.Error
+    
+    def addAction(self, action):
+        self.actions.append(action)
+        return self
     def reset(self):
         for action in self.actions:
-            action.reset()
-    
+            if(hasattr(action,"reset")):
+                action.reset()
+'''
+# base structure of a behavior continue executing until one return running or failed
+'''
 class BehaviorTree(Group):
     def __init__(self):
         Group.__init__(self)
         self.data = {}
+        
+    def __call__(self,delta):
+        return self.update(delta)
     
     def update(self, delta):
-        size = len(self.list)
+        size = len(self.actions)
         for i in range(0, size):
-            state = self.list[i](delta)
+            state = self.actions[i](delta)
             if state != State.Failed:
                 return state
         self.reset()
         return state
-    
+'''
 # If one or multiple fail the whole sequence fails
-
+'''
 class Sequence(Group):
     def __init__(self):
         Group.__init__(self)
         self.current = -1
         
+    def __call__(self,delta):
+        return self.update(delta)
+    
     def update(self, delta):
-        size = len(self.list)
+        size = len(self.actions)
         if self.current == -1:
             self.current = 0
             
@@ -65,6 +77,9 @@ class Concurrent(Group):
     def __init__(self, minfails=-1):
         Group.__init__(self)
         self.minFail = minfails
+        
+    def __call__(self,delta):
+        return self.update(delta)
     
     def update(self, delta):
         fails = 0
@@ -86,16 +101,19 @@ class PrioritySelector(Group):
     def __init__(self):
         Group.__init__(self)
         
+    def __call__(self,delta):
+        return self.update(delta)
+        
     def update(self, delta):
-        size = len(self.list)
+        size = len(self.actions)
         for i in range(0, size):
-            state = self.list[i](delta)
+            state = self.actions[i](delta)
             if state == State.Failed:
-                self.list[i].reset()
+                if hasattr(self.actions[i],'reset'):
+                    self.actions[i].reset()
             if state != State.Failed:
                 break
         return state
-        
         
 class SwitchSelector:
     
@@ -104,6 +122,9 @@ class SwitchSelector:
         self.doTrue = true
         self.doFalse = false
         self.exe = None
+    
+    def __call__(self,delta):
+        return self.update(delta)
           
     def update(self, delta):
         if self.exe == None:
@@ -112,8 +133,9 @@ class SwitchSelector:
             else:
                 self.exe = self.doFalse
         state = State.Ready
-        if self.exe == None:
-            state = self.exe()
+        if self.exe != None:
+            state = self.exe(delta)
+            self.exe = None
         return state 
         
         

@@ -4,7 +4,7 @@ Created on Jan 29, 2014
 @author: otrebor
 '''
 import physutil
-
+import Events
 
 class PhysEng:
     
@@ -17,7 +17,8 @@ class PhysEng:
     
     # object is a collider
     def add(self, obj):
-        self.objects.append(obj)
+        if not(obj in self.objects):
+            self.objects.append(obj)
     
     def remove(self, obj):
         self.toRemove.append(obj)
@@ -30,7 +31,7 @@ class PhysEng:
                     self.handleCollision(self.objects[i], self.objects[j])
         self.updateList()
     
-    def draw(self,screen):
+    def draw(self, screen):
         for obj in self.objects:
             obj.draw(screen)
     
@@ -48,37 +49,41 @@ class PhysEng:
             return
         info = physutil.testCollision(obj1, obj2)
         if info != None: 
-            if not obj1.static or not obj2.static:
-                if obj1.static:
-                    move = info.direction.scale(info.distance + dis)
-                    info.shape2.position = info.shape2.position.add(move.scale(-1))
-                elif obj2.static:
-                    move = info.direction.scale(info.distance + dis)
-                    info.shape1.position = info.shape1.position.add(move)
-                else:
-                    move = info.direction.scale((info.distance + dis) / 2)
-                    info.shape1.position = info.shape1.position.add(move)
-                    info.shape2.position = info.shape2.position.add(move.scale(-1))
-            physutil.HandleCollision(obj1, obj2, info)
-            self.callOnCollision(obj1, obj2, info)
+            if obj1.isTrigger or obj2.isTrigger:
+                if obj1.isTrigger and obj2.isTrigger:
+                    return
+                self.callOnTrigger(obj1,obj2,info)
+            else:
+                if not obj1.static or not obj2.static:
+                    if obj1.static:
+                        move = info.direction.scale(info.distance + dis)
+                        info.shape2.position = info.shape2.position.add(move.scale(-1))
+                    elif obj2.static:
+                        move = info.direction.scale(info.distance + dis)
+                        info.shape1.position = info.shape1.position.add(move)
+                    else:
+                        move = info.direction.scale((info.distance + dis) / 2)
+                        info.shape1.position = info.shape1.position.add(move)
+                        info.shape2.position = info.shape2.position.add(move.scale(-1))
+                physutil.HandleCollision(obj1, obj2, info)
+                self.callOnCollision(obj1, obj2, info)
     
     '''
     Send message to obj1 and obj2 to call OnCollision
     arg is an object with other (GameObject), normal(Vector2)
     '''
     def callOnCollision(self, obj1, obj2, info):
-        arg = Collision()
-        arg.other = obj2.gameObject
-        arg.normal = info.direction
-        obj1.gameObject.sendMessage("OnCollision", arg)
-        arg = Collision()
-        arg.other = obj1.gameObject
-        arg.normal = info.direction.scale(-1)
-        obj2.gameObject.sendMessage("OnCollision", arg)
+        coll = Events.OnCollision(obj2.gameObject, info.direction, info.distance)
+        coll.CallOn(obj1.gameObject)
+        coll = Events.OnCollision(obj1.gameObject, info.direction.scale(-1),info.distance)
+        coll.CallOn(obj2.gameObject)
+        
     
+    def callOnTrigger(self,obj1,obj2,info):
+        coll = Events.OnTrigger(obj2.gameObject, info.direction,info.distance)
+        coll.CallOn(obj1.gameObject)
+        coll = Events.OnTrigger(obj1.gameObject, info.direction.scale(-1),info.distance)
+        coll.CallOn(obj2.gameObject)
     
-class Collision:
-    def __init__(self):
-        self.other = None
-        self.normal = None
+
         

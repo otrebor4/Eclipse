@@ -6,25 +6,33 @@ Created on Jan 28, 2014
 import pygame
 
 import GameObject
-import Object
-import game.phys.Collider as Collider
+import game.components.Render as Render
+import game.components.Collider as Collider
 
 
 class CircleObject(GameObject.GameObject):
+    yaml_tag = u'!CircleObject'
     def __init__(self, world, x, y, r, collor):
         GameObject.GameObject.__init__(self, world)
+        Collider.CircleCollider(self, x, y, r)
+        render = self.addComponent(CircleRender)
+        render.color = collor
         
-        self.collor = collor
-        self.collider = Collider.CircleCollider(self, x, y, r)
-        self.components.append(self.collider)
-        self.render = Object.Object()
-        self.render.draw = lambda screen: self.drawCircle(screen)
-        self.pos = lambda: self.collider.pos()
+class CircleRender(Render.Render):
+    yaml_tag = u'!CircleRender'
+    def __getstate__(self):
+        data = Render.Render.__getstate__(self)
+        data['color'] = self.color
+        return data
+    
+    def __init__(self, gameObject):
+        Render.Render.__init__(self, gameObject)
+        self.color = (0,0,0,0)
         
         
-    def drawCircle(self, screen):
-        pos = self.shape.position
-        pygame.draw.circle(screen, self.collor, (int(pos.x), int(pos.y)), int(self.shape.radius))
+    def draw(self, screen):
+        pos = self.gameObject.shape.position
+        pygame.draw.circle(screen, self.color, (int(pos.x), int(pos.y)), int(self.gameObject.shape.radius))
         
         
         

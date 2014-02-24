@@ -1,0 +1,38 @@
+&id001 !RectObject
+collider: &id002 !RectCollider
+  gameObject: *id001
+  static: false
+components:
+- *id002
+- &id003 !RectRender
+  color: !!python/tuple [10, 10, 50, 255]
+  gameObject: *id001
+- &id004 !Riged
+  applyGravity: true
+  gameObject: *id001
+  kinematic: true
+  mass: 1.0
+  velocity: !Vector2 {x: 0, y: 0}
+- !Controller
+  gameObject: *id001
+  runSpeed: 200
+  walkSpeed: 100
+- !!python/object:scripts.Shoter.Shotter
+  gameObject: *id001
+- !SpotLight
+  gameObject: *id001
+  intensity: 150
+  position: null
+  radius: 150
+name: player
+renders:
+- *id003
+riged: *id004
+shape: !Rectangle
+  aabb: !!python/tuple [0, 0, 25, 25]
+  corners:
+  - !Vector2 {x: 0, y: 0}
+  - !Vector2 {x: 25, y: 0}
+  - !Vector2 {x: 25, y: 25}
+  - !Vector2 {x: 0, y: 25}
+  position: !Vector2 {x: 490, y: 700}

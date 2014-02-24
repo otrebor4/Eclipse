@@ -1,0 +1,498 @@
+!Terrain
+navMesh: &id001 !NavMesh
+  Debug: false
+  data: !NavMeshData
+    nm: *id001
+    polys:
+    - &id047 !PolyNode
+      aabbox: !!python/tuple [704, 64, 832, 576]
+      area: -32768.0
+      centroid: !Vector2 {x: 789.3333333333334, y: 362.6666666666667}
+      corners:
+      - !Vector2 {x: 704, y: 448}
+      - !Vector2 {x: 832, y: 576}
+      - !Vector2 {x: 832, y: 64}
+      neighbors:
+        ? &id056 !!python/tuple
+        - !!python/tuple [704, 448]
+        - !!python/tuple [832, 64]
+        : &id003 !PolyNode
+          aabbox: !!python/tuple [640, 64, 832, 448]
+          area: -32768.0
+          centroid: !Vector2 {x: 725.3333333333334, y: 213.33333333333334}
+          corners:
+          - !Vector2 {x: 640, y: 128}
+          - !Vector2 {x: 704, y: 448}
+          - !Vector2 {x: 832, y: 64}
+          neighbors:
+            ? &id002 !!python/tuple
+            - !!python/tuple [640, 128]
+            - !!python/tuple [704, 448]
+            : &id053 !PolyNode
+              aabbox: !!python/tuple [640, 128, 704, 448]
+              area: -4096.0
+              centroid: !Vector2 {x: 661.3333333333334, y: 277.3333333333333}
+              corners:
+              - !Vector2 {x: 640, y: 256}
+              - !Vector2 {x: 704, y: 448}
+              - !Vector2 {x: 640, y: 128}
+              neighbors:
+                *id002: *id003
+                ? &id052 !!python/tuple
+                - !!python/tuple [640, 256]
+                - !!python/tuple [704, 448]
+                : &id051 !PolyNode
+                  aabbox: !!python/tuple [640, 256, 704, 448]
+                  area: -6144.0
+                  centroid: !Vector2 {x: 661.3333333333334, y: 384.0}
+                  corners:
+                  - !Vector2 {x: 640, y: 256}
+                  - !Vector2 {x: 640, y: 448}
+                  - !Vector2 {x: 704, y: 448}
+                  neighbors:
+                    ? &id050 !!python/tuple
+                    - !!python/tuple [640, 256]
+                    - !!python/tuple [640, 448]
+                    : &id005 !PolyNode
+                      aabbox: !!python/tuple [512, 256, 640, 512]
+                      area: -12288.0
+                      centroid: !Vector2 {x: 597.3333333333334, y: 405.3333333333333}
+                      corners:
+                      - !Vector2 {x: 512, y: 512}
+                      - !Vector2 {x: 640, y: 448}
+                      - !Vector2 {x: 640, y: 256}
+                      neighbors:
+                        ? &id004 !!python/tuple
+                        - !!python/tuple [512, 512]
+                        - !!python/tuple [640, 256]
+                        : &id059 !PolyNode
+                          aabbox: !!python/tuple [512, 256, 640, 512]
+                          area: -16384.0
+                          centroid: !Vector2 {x: 554.6666666666666, y: 341.3333333333333}
+                          corners:
+                          - !Vector2 {x: 512, y: 512}
+                          - !Vector2 {x: 640, y: 256}
+                          - !Vector2 {x: 512, y: 256}
+                          neighbors:
+                            *id004: *id005
+                        ? &id006 !!python/tuple
+                        - !!python/tuple [512, 512]
+                        - !!python/tuple [640, 448]
+                        : &id041 !PolyNode
+                          aabbox: !!python/tuple [512, 448, 640, 512]
+                          area: -4096.0
+                          centroid: !Vector2 {x: 597.3333333333334, y: 490.6666666666667}
+                          corners:
+                          - !Vector2 {x: 640, y: 512}
+                          - !Vector2 {x: 640, y: 448}
+                          - !Vector2 {x: 512, y: 512}
+                          neighbors:
+                            *id006: *id005
+                            ? &id040 !!python/tuple
+                            - !!python/tuple [512, 512]
+                            - !!python/tuple [640, 512]
+                            : &id039 !PolyNode
+                              aabbox: !!python/tuple [512, 512, 640, 640]
+                              area: -8192.0
+                              centroid: !Vector2 {x: 554.6666666666666, y: 554.6666666666666}
+                              corners:
+                              - !Vector2 {x: 512, y: 640}
+                              - !Vector2 {x: 640, y: 512}
+                              - !Vector2 {x: 512, y: 512}
+                              neighbors:
+                                ? &id038 !!python/tuple
+                                - !!python/tuple [512, 512]
+                                - !!python/tuple [512, 640]
+                                : &id036 !PolyNode
+                                  aabbox: !!python/tuple [384, 512, 512, 768]
+                                  area: -16384.0
+                                  centroid: !Vector2 {x: 469.3333333333333, y: 597.3333333333334}
+                                  corners:
+                                  - !Vector2 {x: 512, y: 640}
+                                  - !Vector2 {x: 512, y: 512}
+                                  - !Vector2 {x: 384, y: 512}
+                                  - !Vector2 {x: 448, y: 640}
+                                  - !Vector2 {x: 512, y: 768}
+                                  neighbors:
+                                    ? &id035 !!python/tuple
+                                    - !!python/tuple [384, 512]
+                                    - !!python/tuple [448, 640]
+                                    : &id015 !PolyNode
+                                      aabbox: !!python/tuple [256, 512, 448, 640]
+                                      area: -10240.0
+                                      centroid: !Vector2 {x: 362.66666666666663, y: 576.0}
+                                      corners:
+                                      - !Vector2 {x: 384, y: 512}
+                                      - !Vector2 {x: 256, y: 576}
+                                      - !Vector2 {x: 448, y: 640}
+                                      neighbors:
+                                        ? &id032 !!python/tuple
+                                        - !!python/tuple [256, 576]
+                                        - !!python/tuple [384, 512]
+                                        : &id031 !PolyNode
+                                          aabbox: !!python/tuple [256, 512, 384, 576]
+                                          area: -4096.0
+                                          centroid: !Vector2 {x: 298.6666666666667,
+                                            y: 533.3333333333334}
+                                          corners:
+                                          - !Vector2 {x: 384, y: 512}
+                                          - !Vector2 {x: 256, y: 512}
+                                          - !Vector2 {x: 256, y: 576}
+                                          neighbors:
+                                            ? &id030 !!python/tuple
+                                            - !!python/tuple [256, 512]
+                                            - !!python/tuple [384, 512]
+                                            : &id029 !PolyNode
+                                              aabbox: !!python/tuple [256, 256, 384,
+                                                512]
+                                              area: -16384.0
+                                              centroid: !Vector2 {x: 341.3333333333333,
+                                                y: 426.6666666666667}
+                                              corners:
+                                              - !Vector2 {x: 256, y: 512}
+                                              - !Vector2 {x: 384, y: 512}
+                                              - !Vector2 {x: 384, y: 256}
+                                              neighbors:
+                                                ? &id028 !!python/tuple
+                                                - !!python/tuple [256, 512]
+                                                - !!python/tuple [384, 256]
+                                                : &id017 !PolyNode
+                                                  aabbox: !!python/tuple [64, 256,
+                                                    384, 512]
+                                                  area: -32768.0
+                                                  centroid: !Vector2 {x: 234.66666666666666,
+                                                    y: 384.0}
+                                                  corners:
+                                                  - !Vector2 {x: 64, y: 384}
+                                                  - !Vector2 {x: 256, y: 512}
+                                                  - !Vector2 {x: 384, y: 256}
+                                                  neighbors:
+                                                    ? &id016 !!python/tuple
+                                                    - !!python/tuple [64, 384]
+                                                    - !!python/tuple [256, 512]
+                                                    : &id008 !PolyNode
+                                                      aabbox: !!python/tuple [64,
+                                                        384, 256, 512]
+                                                      area: -4096.0
+                                                      centroid: !Vector2 {x: 170.66666666666666,
+                                                        y: 469.3333333333333}
+                                                      corners:
+                                                      - !Vector2 {x: 64, y: 384}
+                                                      - !Vector2 {x: 192, y: 512}
+                                                      - !Vector2 {x: 256, y: 512}
+                                                      neighbors:
+                                                        ? &id007 !!python/tuple
+                                                        - !!python/tuple [64, 384]
+                                                        - !!python/tuple [192, 512]
+                                                        : &id010 !PolyNode
+                                                          aabbox: !!python/tuple [
+                                                            64, 384, 192, 640]
+                                                          area: -16384.0
+                                                          centroid: !Vector2 {x: 106.66666666666667,
+                                                            y: 512.0}
+                                                          corners:
+                                                          - !Vector2 {x: 64, y: 384}
+                                                          - !Vector2 {x: 64, y: 640}
+                                                          - !Vector2 {x: 192, y: 512}
+                                                          neighbors:
+                                                            *id007: *id008
+                                                            ? &id009 !!python/tuple
+                                                            - !!python/tuple [64,
+                                                              640]
+                                                            - !!python/tuple [192,
+                                                              512]
+                                                            : &id012 !PolyNode
+                                                              aabbox: !!python/tuple [
+                                                                64, 512, 192, 640]
+                                                              area: -4096.0
+                                                              centroid: !Vector2 {
+                                                                x: 149.33333333333334,
+                                                                y: 576.0}
+                                                              corners:
+                                                              - !Vector2 {x: 192,
+                                                                y: 512}
+                                                              - !Vector2 {x: 64, y: 640}
+                                                              - !Vector2 {x: 192,
+                                                                y: 576}
+                                                              neighbors:
+                                                                *id009: *id010
+                                                                ? &id011 !!python/tuple
+                                                                - !!python/tuple [
+                                                                  64, 640]
+                                                                - !!python/tuple [
+                                                                  192, 576]
+                                                                : &id014 !PolyNode
+                                                                  aabbox: !!python/tuple [
+                                                                    64, 576, 448,
+                                                                    640]
+                                                                  area: -12288.0
+                                                                  centroid: !Vector2 {
+                                                                    x: 234.66666666666666,
+                                                                    y: 618.6666666666666}
+                                                                  corners:
+                                                                  - !Vector2 {x: 192,
+                                                                    y: 576}
+                                                                  - !Vector2 {x: 64,
+                                                                    y: 640}
+                                                                  - !Vector2 {x: 448,
+                                                                    y: 640}
+                                                                  neighbors:
+                                                                    *id011: *id012
+                                                                    ? &id013 !!python/tuple
+                                                                    - !!python/tuple [
+                                                                      192, 576]
+                                                                    - !!python/tuple [
+                                                                      448, 640]
+                                                                    : &id034 !PolyNode
+                                                                      aabbox: !!python/tuple [
+                                                                        192, 576,
+                                                                        448, 640]
+                                                                      area: -2048.0
+                                                                      centroid: !Vector2 {
+                                                                        x: 298.6666666666667,
+                                                                        y: 597.3333333333334}
+                                                                      corners:
+                                                                      - !Vector2 {
+                                                                        x: 192, y: 576}
+                                                                      - !Vector2 {
+                                                                        x: 448, y: 640}
+                                                                      - !Vector2 {
+                                                                        x: 256, y: 576}
+                                                                      neighbors:
+                                                                        *id013: *id014
+                                                                        ? &id033 !!python/tuple
+                                                                        - !!python/tuple [
+                                                                          256, 576]
+                                                                        - !!python/tuple [
+                                                                          448, 640]
+                                                                        : *id015
+                                                        *id016: *id017
+                                                    ? &id027 !!python/tuple
+                                                    - !!python/tuple [64, 384]
+                                                    - !!python/tuple [384, 256]
+                                                    : &id019 !PolyNode
+                                                      aabbox: !!python/tuple [0, 256,
+                                                        384, 384]
+                                                      area: -16384.0
+                                                      centroid: !Vector2 {x: 170.66666666666666,
+                                                        y: 314.6666666666667}
+                                                      corners:
+                                                      - !Vector2 {x: 64, y: 384}
+                                                      - !Vector2 {x: 384, y: 256}
+                                                      - !Vector2 {x: 256, y: 256}
+                                                      - !Vector2 {x: 64, y: 320}
+                                                      - !Vector2 {x: 0, y: 384}
+                                                      neighbors:
+                                                        ? &id018 !!python/tuple
+                                                        - !!python/tuple [0, 384]
+                                                        - !!python/tuple [64, 320]
+                                                        : &id060 !PolyNode
+                                                          aabbox: !!python/tuple [
+                                                            0, 320, 64, 384]
+                                                          area: -2048.0
+                                                          centroid: !Vector2 {x: 21.333333333333332,
+                                                            y: 341.3333333333333}
+                                                          corners:
+                                                          - !Vector2 {x: 64, y: 320}
+                                                          - !Vector2 {x: 0, y: 320}
+                                                          - !Vector2 {x: 0, y: 384}
+                                                          neighbors:
+                                                            *id018: *id019
+                                                        ? &id026 !!python/tuple
+                                                        - !!python/tuple [64, 320]
+                                                        - !!python/tuple [256, 256]
+                                                        : &id025 !PolyNode
+                                                          aabbox: !!python/tuple [
+                                                            64, 64, 256, 320]
+                                                          area: -24576.0
+                                                          centroid: !Vector2 {x: 128.0,
+                                                            y: 213.33333333333334}
+                                                          corners:
+                                                          - !Vector2 {x: 256, y: 256}
+                                                          - !Vector2 {x: 64, y: 64}
+                                                          - !Vector2 {x: 64, y: 320}
+                                                          neighbors:
+                                                            ? &id024 !!python/tuple
+                                                            - !!python/tuple [64,
+                                                              64]
+                                                            - !!python/tuple [256,
+                                                              256]
+                                                            : &id021 !PolyNode
+                                                              aabbox: !!python/tuple [
+                                                                64, 64, 256, 256]
+                                                              area: -12288.0
+                                                              centroid: !Vector2 {
+                                                                x: 192.0, y: 149.33333333333334}
+                                                              corners:
+                                                              - !Vector2 {x: 256,
+                                                                y: 128}
+                                                              - !Vector2 {x: 64, y: 64}
+                                                              - !Vector2 {x: 256,
+                                                                y: 256}
+                                                              - !Vector2 {x: 256,
+                                                                y: 192}
+                                                              neighbors:
+                                                                ? &id020 !!python/tuple
+                                                                - !!python/tuple [
+                                                                  64, 64]
+                                                                - !!python/tuple [
+                                                                  256, 128]
+                                                                : &id023 !PolyNode
+                                                                  aabbox: !!python/tuple [
+                                                                    64, 64, 832, 128]
+                                                                  area: -24576.0
+                                                                  centroid: !Vector2 {
+                                                                    x: 384.0, y: 85.33333333333333}
+                                                                  corners:
+                                                                  - !Vector2 {x: 256,
+                                                                    y: 128}
+                                                                  - !Vector2 {x: 832,
+                                                                    y: 64}
+                                                                  - !Vector2 {x: 64,
+                                                                    y: 64}
+                                                                  neighbors:
+                                                                    *id020: *id021
+                                                                    ? &id022 !!python/tuple
+                                                                    - !!python/tuple [
+                                                                      256, 128]
+                                                                    - !!python/tuple [
+                                                                      832, 64]
+                                                                    : &id055 !PolyNode
+                                                                      aabbox: !!python/tuple [
+                                                                        256, 64, 832,
+                                                                        128]
+                                                                      area: -12288.0
+                                                                      centroid: !Vector2 {
+                                                                        x: 576.0,
+                                                                        y: 106.66666666666667}
+                                                                      corners:
+                                                                      - !Vector2 {
+                                                                        x: 640, y: 128}
+                                                                      - !Vector2 {
+                                                                        x: 832, y: 64}
+                                                                      - !Vector2 {
+                                                                        x: 256, y: 128}
+                                                                      neighbors:
+                                                                        *id022: *id023
+                                                                        ? &id054 !!python/tuple
+                                                                        - !!python/tuple [
+                                                                          640, 128]
+                                                                        - !!python/tuple [
+                                                                          832, 64]
+                                                                        : *id003
+                                                                *id024: *id025
+                                                            *id026: *id019
+                                                        *id027: *id017
+                                                    *id028: *id029
+                                                *id030: *id031
+                                            *id032: *id015
+                                        *id033: *id034
+                                        *id035: *id036
+                                    ? &id037 !!python/tuple
+                                    - !!python/tuple [448, 640]
+                                    - !!python/tuple [512, 768]
+                                    : &id061 !PolyNode
+                                      aabbox: !!python/tuple [448, 640, 512, 768]
+                                      area: -4096.0
+                                      centroid: !Vector2 {x: 469.3333333333333, y: 725.3333333333334}
+                                      corners:
+                                      - !Vector2 {x: 448, y: 640}
+                                      - !Vector2 {x: 448, y: 768}
+                                      - !Vector2 {x: 512, y: 768}
+                                      neighbors:
+                                        *id037: *id036
+                                    *id038: *id039
+                                *id040: *id041
+                                ? &id042 !!python/tuple
+                                - !!python/tuple [512, 640]
+                                - !!python/tuple [640, 512]
+                                : &id044 !PolyNode
+                                  aabbox: !!python/tuple [512, 512, 768, 640]
+                                  area: -16384.0
+                                  centroid: !Vector2 {x: 640.0, y: 597.3333333333334}
+                                  corners:
+                                  - !Vector2 {x: 512, y: 640}
+                                  - !Vector2 {x: 768, y: 640}
+                                  - !Vector2 {x: 640, y: 512}
+                                  neighbors:
+                                    *id042: *id039
+                                    ? &id043 !!python/tuple
+                                    - !!python/tuple [640, 512]
+                                    - !!python/tuple [768, 640]
+                                    : &id049 !PolyNode
+                                      aabbox: !!python/tuple [640, 512, 768, 640]
+                                      area: -4096.0
+                                      centroid: !Vector2 {x: 704.0, y: 554.6666666666666}
+                                      corners:
+                                      - !Vector2 {x: 768, y: 640}
+                                      - !Vector2 {x: 704, y: 512}
+                                      - !Vector2 {x: 640, y: 512}
+                                      neighbors:
+                                        *id043: *id044
+                                        ? &id048 !!python/tuple
+                                        - !!python/tuple [704, 512]
+                                        - !!python/tuple [768, 640]
+                                        : &id046 !PolyNode
+                                          aabbox: !!python/tuple [704, 448, 768, 640]
+                                          area: -4096.0
+                                          centroid: !Vector2 {x: 736.0, y: 544.0}
+                                          corners:
+                                          - !Vector2 {x: 768, y: 576}
+                                          - !Vector2 {x: 704, y: 448}
+                                          - !Vector2 {x: 704, y: 512}
+                                          - !Vector2 {x: 768, y: 640}
+                                          neighbors:
+                                            ? &id045 !!python/tuple
+                                            - !!python/tuple [704, 448]
+                                            - !!python/tuple [768, 576]
+                                            : &id058 !PolyNode
+                                              aabbox: !!python/tuple [704, 448, 832,
+                                                576]
+                                              area: -4096.0
+                                              centroid: !Vector2 {x: 768.0, y: 533.3333333333334}
+                                              corners:
+                                              - !Vector2 {x: 768, y: 576}
+                                              - !Vector2 {x: 832, y: 576}
+                                              - !Vector2 {x: 704, y: 448}
+                                              neighbors:
+                                                *id045: *id046
+                                                ? &id057 !!python/tuple
+                                                - !!python/tuple [704, 448]
+                                                - !!python/tuple [832, 576]
+                                                : *id047
+                                            *id048: *id049
+                        *id050: *id051
+                    *id052: *id053
+            *id054: *id055
+            *id056: *id047
+        *id057: *id058
+    - *id051
+    - *id053
+    - *id005
+    - *id059
+    - *id041
+    - *id049
+    - *id014
+    - *id034
+    - *id012
+    - *id010
+    - *id060
+    - *id003
+    - *id055
+    - *id023
+    - *id021
+    - *id025
+    - *id029
+    - *id008
+    - *id017
+    - *id019
+    - *id058
+    - *id046
+    - *id044
+    - *id061
+    - *id015
+    - *id039
+    - *id036
+    - *id031
+  edges: {}
+  first: null

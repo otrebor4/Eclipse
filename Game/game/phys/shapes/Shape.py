@@ -7,8 +7,16 @@ import math
 
 import game.util.Vector2 as Vector2
 import pygame
+import game.lib.yaml as yaml
 
-class Shape:
+class Shape(yaml.YAMLObject):
+    yaml_tag = u'!Shape'
+    def __getstate__(self):
+        data = {}
+        data['position'] = self.position
+        data['aabb'] = self.aabb
+        return data
+    
     def __init__(self, x, y):
         self.position = Vector2.Vector2(x, y)
         self.aabb = (0, 0, 0, 0)
@@ -44,6 +52,11 @@ class Shape:
         y = self.Top() + self.Height() / 2
         return Vector2.Vector2(x, y)
     
+    def StartCorner(self):
+        x = self.Left()
+        y = self.Top()
+        return Vector2.Vector2(x,y)
+        
     
     def Radius(self):
         w = self.Width()
@@ -51,9 +64,19 @@ class Shape:
         
         return math.sqrt(w * w + h * h)
     
-    def draw(self,screen):
-        s = pygame.Surface([self.Width(),self.Height()], pygame.SRCALPHA, 32)
-        s.fill((250,0,0,100))
+    def draw(self, screen):
+        s = pygame.Surface([self.Width(), self.Height()], pygame.SRCALPHA, 32)
+        s.fill((250, 0, 0, 100))
         
-        screen.blit(s, (self.Left(),self.Top()))
+        screen.blit(s, (self.Left(), self.Top()))
         pass
+    
+    def Points(self):
+        points = [(self.Left(),self.Top()), 
+                  (self.Right(),self.Top()),
+                  (self.Right(),self.Bottom()),
+                  (self.Left(),self.Bottom())]
+        return points
+        
+            
+            

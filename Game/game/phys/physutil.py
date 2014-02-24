@@ -48,12 +48,13 @@ def testCollision(obj1, obj2):
     # polygon polygon collision
     if isinstance(shape1, game.phys.shapes.Polygon.Polygon) and isinstance(shape2, game.phys.shapes.Polygon.Polygon):
         return testPolygonSat(shape1, shape2)
+        
     # polygon-circle collision
     if isinstance(shape1, game.phys.shapes.Circle.Circle):
         return testCirclePolygonSat(shape1, shape2, False)
     else:
         return testCirclePolygonSat(shape2, shape1, True)
-        
+           
 def testCircleCircle(c1, c2):
     totalRadius = c1.radius + c2.radius
     distSqr = c1.position.distanceSq(c2.position)
@@ -93,7 +94,7 @@ def testPolygonSat(poly1, poly2):
         # max0 = max0 + sOffset
         
         (dist, new) = makeResult(result, min0, max0, min1, max1, vAxis, True)
-        if dist < shortestDist:
+        if dist <= shortestDist:
             shortestDist = dist
             if new == None:
                 return None
@@ -171,9 +172,9 @@ def makeResult(old, min0, max0, min1, max1, vAxis, flip=False):
     result = CollisionInfo()
     result.shape1 = old.shape1
     result.shape2 = old.shape2
-    d0 = min0 - max1
-    d1 = min1 - max0
-    if d0 > 0 or d1 > 0:
+    if max0 < min1:
+        return (0, None)
+    if max1 < min0:
         return (0, None)
     distmin = (max1 - min0) if flip else -(max1 - min0)
     distminAbs = -distmin if distmin < 0 else distmin
@@ -189,7 +190,7 @@ def getMinMax(axis, p1):
     min0 = axis.dot(p1[0])
     max0 = min0
         
-    for j in range(0, len(p1)):
+    for j in range(1, len(p1)):
         t = axis.dot(p1[j])
         if t < min0:
             min0 = t
@@ -200,7 +201,7 @@ def getMinMax(axis, p1):
 def getAxisNormal(points, index):
     pt1 = points[index]
     pt2 = points[ index + 1 if index + 1 < len(points) else 0 ]
-    return pt1.sub(pt2).normal().normalize()
+    return pt2.sub(pt1).normal().normalize()
     
     
     
@@ -249,4 +250,28 @@ def div(x, y):
     return x / y
 
 
+def PolygonInsidePolygon( poly1, poly2 ):
+    #check if poly1 is inside poly2
+    inside = True
+    for (x,y) in poly1:
+        inside = inside and pointInsidePolygon((x,y), poly2)
+        
+    return inside
+
+def pointInsidePolygon( (x,y), poly):
+    n = len(poly)
+    inside =False
+
+    p1x,p1y = poly[0]
+    for i in range(n+1):
+        p2x,p2y = poly[i % n]
+        if y > min(p1y,p2y):
+            if y <= max(p1y,p2y):
+                if x <= max(p1x,p2x):
+                    if p1y != p2y:
+                        xinters = (y-p1y)*(p2x-p1x)/(p2y-p1y)+p1x
+                    if p1x == p2x or x <= xinters:
+                        inside = not inside
+        p1x,p1y = p2x,p2y
+    return inside
 

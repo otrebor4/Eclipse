@@ -3,7 +3,7 @@ Created on Jan 28, 2014
 
 @author: otrebor
 '''
-import game.base.Component as Component
+import game.components.Component as Component
 
 
 class ApplySpeed(Component.Component):

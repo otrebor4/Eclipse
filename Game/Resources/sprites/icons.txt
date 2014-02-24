@@ -1,0 +1,6 @@
+sprites/icons.png
+energy_green:0,0,40,40
+energy_yellow:40,0,40,40
+energy_red:80,0,40,40
+fuel:0,40,40,40
+water:40,40,40,40
